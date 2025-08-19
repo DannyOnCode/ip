@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Aura {
@@ -7,31 +9,35 @@ public class Aura {
                                     + "  / _ \\| | | | '__/ _` |\n"
                                     + " / ___ \\ |_| | | | (_| |\n"
                                     + "/_/   \\_\\__,_|_|  \\__,_|\n";
+    private static final List<String> lists = new ArrayList<>();
 
     public static void main(String[] args) {
         greeting();
         echo();
-        exit();
+    }
+
+    private static void echo() {
+        String input;
+        boolean flag = true;
+        while (flag) {
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextLine();
+
+            switch (input.toLowerCase()) {
+                case "bye" -> {
+                    exit();
+                    flag = false;
+                }
+                case "list" -> printList();
+                default -> addItem(input);
+            }
+        }
     }
 
     private static void formatReplyAndDisplay(String reply) {
         System.out.println("    ____________________________________________________________");
         System.out.println("        " + reply);
         System.out.println("    ____________________________________________________________");
-    }
-
-    private static void echo() {
-        String input;
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            input = scanner.nextLine();
-            if (input.toLowerCase().equals("bye")) {
-                formatReplyAndDisplay("Bye Bye friend");
-                break;
-            }
-
-            formatReplyAndDisplay(input);
-        }
     }
 
     private static void greeting() {
@@ -41,6 +47,23 @@ public class Aura {
     }
 
     private static void exit() {
-        System.out.print("Bye Bye. Hope to see you again soon!");
+        formatReplyAndDisplay("Bye Bye my friend");
+    }
+
+    private static void addItem(String item) {
+        Aura.lists.add(item);
+        formatReplyAndDisplay(String.format("added: %s", item));
+    }
+
+    private static void printList() {
+        printDivider();
+        for (int i = 0; i < lists.size(); i++) {
+            System.out.println(String.format("\t\t%d. %s", (i + 1), lists.get(i)));
+        }
+        printDivider();
+    }
+
+    private static void printDivider() {
+        System.out.println("    ____________________________________________________________");
     }
 }
