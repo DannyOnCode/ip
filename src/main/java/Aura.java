@@ -42,9 +42,11 @@ public class Aura {
                         addDeadline(input);
                     } else if (input.toLowerCase().startsWith("event ")) {
                         addEvent(input);
+                    } else if (input.toLowerCase().startsWith("delete ")) {
+                        deleteTask(input);
                     } else {
                         String error;
-                        List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event");
+                        List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
                         if (commands.contains(input)) {
                             error = String.format("ERROR SIR!! The description of the command %s cannot be empty.", input);
                         } else {
@@ -80,6 +82,28 @@ public class Aura {
         replyPrint(String.format("  %s", task));
         replyPrint(String.format("Now you have %d tasks in the list.", Aura.lists.size()));
         printDivider();
+    }
+
+    private static void deleteTask(String input) {
+        try {
+            String trimmedIndex = input.substring(7).trim();
+
+            int index = Integer.parseInt(trimmedIndex);
+            Task task = Aura.lists.get(index - 1);
+            Aura.lists.remove(index - 1);
+            printDivider();
+            replyPrint("Understood Sir, I have removed the task: ");
+            replyPrint(String.format("  %s", task));
+            replyPrint(String.format("Now you have %d tasks in the list.", Aura.lists.size()));
+        } catch (NumberFormatException e) {
+            printDivider();
+            replyPrint("You've used the command delete but the index is invalid.");
+        } catch (IndexOutOfBoundsException e) {
+            printDivider();
+            replyPrint("WHAT? Your input index was not in the list");
+        } finally {
+            printDivider();
+        }
     }
 
     private static void markTask(String input) {
