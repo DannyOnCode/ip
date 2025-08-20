@@ -43,8 +43,15 @@ public class Aura {
                     } else if (input.toLowerCase().startsWith("event ")) {
                         addEvent(input);
                     } else {
+                        String error;
+                        List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event");
+                        if (commands.contains(input)) {
+                            error = String.format("ERROR SIR!! The description of the command %s cannot be empty.", input);
+                        } else {
+                            error = "Your input was invalid, make sure to include a valid command";
+                        }
                         printDivider();
-                        replyPrint("Your input was invalid, make sure to include a valid command");
+                        replyPrint(error);
                         printDivider();
                     }
                 }
@@ -122,8 +129,8 @@ public class Aura {
 
     private static void addToDo(String input) {
         try {
-            String trimmedInput = input.substring(5).trim();
-            addTask(new ToDos(trimmedInput));
+            String trimmedTask = input.substring(5).trim();
+            addTask(new ToDos(trimmedTask));
         } catch (Exception e) {
             printDivider();
             replyPrint("Please follow the format \"todo [Task]\"");

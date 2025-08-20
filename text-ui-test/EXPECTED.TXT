@@ -48,16 +48,16 @@ ____________________________________________________________
 		4. [T][ ] prepare for presentation
     ____________________________________________________________
     ____________________________________________________________
-		Your input was invalid, make sure to include a valid command
+		ERROR SIR!! The description of the command todo cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Your input was invalid, make sure to include a valid command
+		ERROR SIR!! The description of the command deadline cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Your input was invalid, make sure to include a valid command
+		ERROR SIR!! The description of the command event cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Your input was invalid, make sure to include a valid command
+		ERROR SIR!! The description of the command mark cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
 		Your input was invalid, make sure to include a valid command
