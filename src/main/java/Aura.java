@@ -1,3 +1,5 @@
+import jdk.jfr.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +36,16 @@ public class Aura {
                         markTask(input);
                     } else if (input.toLowerCase().startsWith("unmark ")) {
                         unMarkTask(input);
+                    } else if (input.toLowerCase().startsWith("todo ")) {
+                        addToDo(input);
+                    } else if (input.toLowerCase().startsWith("deadline ")) {
+                        addDeadline(input);
+                    } else if (input.toLowerCase().startsWith("event ")) {
+                        addEvent(input);
                     } else {
-                        addItem(input);
+                        printDivider();
+                        replyPrint("Your input was invalid, make sure to include a valid command");
+                        printDivider();
                     }
                 }
             }
@@ -56,10 +66,12 @@ public class Aura {
         printDivider();
     }
 
-    private static void addItem(String item) {
-        Aura.lists.add(new Task(item));
+    private static void addTask(Task task) {
+        Aura.lists.add(task);
         printDivider();
-        replyPrint(String.format("added: %s", item));
+        replyPrint("Got it. I've added this task:");
+        replyPrint(String.format("  %s", task));
+        replyPrint(String.format("Now you have %d tasks in the list.", Aura.lists.size()));
         printDivider();
     }
 
@@ -106,6 +118,24 @@ public class Aura {
         } finally {
             printDivider();
         }
+    }
+
+    private static void addToDo(String input) {
+        String trimmedInput = input.substring(5).trim();
+        addTask(new ToDos(trimmedInput));
+    }
+
+    private static void addDeadline(String input) {
+        String trimmedTask = input.substring(9).trim();
+        String[] splitDeadline = trimmedTask.split("/by");
+        addTask(new Deadlines(splitDeadline[0].trim(), splitDeadline[1].trim()));
+    }
+
+    private static void addEvent(String input) {
+        String trimmedTask = input.substring(6).trim();
+        String[] splitEvent = trimmedTask.split("/from");
+        String[] splitDateRange = splitEvent[1].split("/to");
+        addTask(new Events(splitEvent[0].trim(), splitDateRange[0].trim(), splitDateRange[1].trim()));
     }
 
     private static void printList() {

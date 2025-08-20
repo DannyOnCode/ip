@@ -6,6 +6,7 @@ public class Deadlines extends Task{
         this.by = by;
     }
 
+    @Override
     public String toString() {
         return String.format("[D]%s (by %s)",
                 super.toString(), this.by);
