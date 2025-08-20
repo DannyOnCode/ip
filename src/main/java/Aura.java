@@ -121,21 +121,39 @@ public class Aura {
     }
 
     private static void addToDo(String input) {
-        String trimmedInput = input.substring(5).trim();
-        addTask(new ToDos(trimmedInput));
+        try {
+            String trimmedInput = input.substring(5).trim();
+            addTask(new ToDos(trimmedInput));
+        } catch (Exception e) {
+            printDivider();
+            replyPrint("Please follow the format \"todo [Task]\"");
+            printDivider();
+        }
     }
 
     private static void addDeadline(String input) {
-        String trimmedTask = input.substring(9).trim();
-        String[] splitDeadline = trimmedTask.split("/by");
-        addTask(new Deadlines(splitDeadline[0].trim(), splitDeadline[1].trim()));
+        try {
+            String trimmedTask = input.substring(9).trim();
+            String[] splitDeadline = trimmedTask.split("/by");
+            addTask(new Deadlines(splitDeadline[0].trim(), splitDeadline[1].trim()));
+        } catch (Exception e) {
+            printDivider();
+            replyPrint("Please follow the format \"deadline [Task] /by [Due date]\"");
+            printDivider();
+        }
     }
 
     private static void addEvent(String input) {
-        String trimmedTask = input.substring(6).trim();
-        String[] splitEvent = trimmedTask.split("/from");
-        String[] splitDateRange = splitEvent[1].split("/to");
-        addTask(new Events(splitEvent[0].trim(), splitDateRange[0].trim(), splitDateRange[1].trim()));
+        try {
+            String trimmedTask = input.substring(6).trim();
+            String[] splitEvent = trimmedTask.split("/from");
+            String[] splitDateRange = splitEvent[1].split("/to");
+            addTask(new Events(splitEvent[0].trim(), splitDateRange[0].trim(), splitDateRange[1].trim()));
+        } catch (Exception e) {
+            printDivider();
+            replyPrint("Please follow the format \"event [Task] /from [Start date] /to [End date]\"");
+            printDivider();
+        }
     }
 
     private static void printList() {
