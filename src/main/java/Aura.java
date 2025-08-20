@@ -52,27 +52,27 @@ public class Aura {
 
     private static void exit() {
         printDivider();
-        System.out.println("\t\tBye Bye my friend");
+        replyPrint("Bye Bye my friend");
         printDivider();
     }
 
     private static void addItem(String item) {
         Aura.lists.add(new Task(item));
         printDivider();
-        System.out.println(String.format("\t\tadded: %s", item));
+        replyPrint(String.format("added: %s", item));
         printDivider();
     }
 
     private static void markTask(String input) {
+
         String trimmedIndex = input.substring(5).trim();
 
         int index = Integer.parseInt(trimmedIndex);
         Task task = lists.get(index - 1);
         task.markAsDone();
         printDivider();
-        System.out.println("\t\tWell Done sir! I've marked this task as done: ");
-        System.out.println(String.format("\t\t%s", task));
-        printDivider();
+        replyPrint("Well Done sir! I've marked this task as done: ");
+        replyPrint(String.format("%s", task));
     }
 
     private static void unMarkTask(String input) {
@@ -83,20 +83,24 @@ public class Aura {
         task.markAsUnDone();
 
         printDivider();
-        System.out.println("\t\tAlright, I've marked this task as not done: ");
-        System.out.println(String.format("\t\t%s", task));
-        printDivider();
+        replyPrint("Alright, I've marked this task as not done: ");
+        replyPrint(String.format("%s", task));
+
     }
 
     private static void printList() {
         printDivider();
         for (int i = 0; i < lists.size(); i++) {
-            System.out.println(String.format("\t\t%d. %s", (i + 1), lists.get(i)));
+            replyPrint(String.format("%d. %s", (i + 1), lists.get(i)));
         }
         printDivider();
     }
 
     private static void printDivider() {
         System.out.println("    ____________________________________________________________");
+    }
+
+    private static void replyPrint(String text) {
+        System.out.println("\t\t" + text);
     }
 }
