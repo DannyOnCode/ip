@@ -6,15 +6,22 @@ mark 1
 list
 unmark 1
 list
+delete 2
+delete 3
+list
 todo
 deadline
 event
 mark
+delete
 wrongcommand todo item
 deadline finish homework /by
 event concert /from /to
 mark abc
 unmark 99
 unmark -1
+delete -49
+delete 12317
+delete hello
 list
 bye
