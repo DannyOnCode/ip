@@ -9,7 +9,7 @@ public class Aura {
                                     + "  / _ \\| | | | '__/ _` |\n"
                                     + " / ___ \\ |_| | | | (_| |\n"
                                     + "/_/   \\_\\__,_|_|  \\__,_|\n";
-    private static final List<String> lists = new ArrayList<>();
+    private static final List<Task> lists = new ArrayList<>();
 
     public static void main(String[] args) {
         greeting();
@@ -29,30 +29,63 @@ public class Aura {
                     flag = false;
                 }
                 case "list" -> printList();
-                default -> addItem(input);
+                default -> {
+                    if (input.toLowerCase().startsWith("mark ")) {
+                        markTask(input);
+                    } else if (input.toLowerCase().startsWith("unmark ")) {
+                        unMarkTask(input);
+                    } else {
+                        addItem(input);
+                    }
+                }
             }
         }
     }
 
-    private static void formatReplyAndDisplay(String reply) {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("        " + reply);
-        System.out.println("    ____________________________________________________________");
-    }
-
     private static void greeting() {
-        formatReplyAndDisplay(Aura.LOGO
+        System.out.println("____________________________________________________________");
+        System.out.println(Aura.LOGO
                 + "Hello! I'm " + Aura.ASSISTANCE_NAME + "\n"
                 + "What can I do for you?");
+        System.out.println("____________________________________________________________");
     }
 
     private static void exit() {
-        formatReplyAndDisplay("Bye Bye my friend");
+        printDivider();
+        System.out.println("\t\tBye Bye my friend");
+        printDivider();
     }
 
     private static void addItem(String item) {
-        Aura.lists.add(item);
-        formatReplyAndDisplay(String.format("added: %s", item));
+        Aura.lists.add(new Task(item));
+        printDivider();
+        System.out.println(String.format("\t\tadded: %s", item));
+        printDivider();
+    }
+
+    private static void markTask(String input) {
+        String trimmedIndex = input.substring(5).trim();
+
+        int index = Integer.parseInt(trimmedIndex);
+        Task task = lists.get(index - 1);
+        task.markAsDone();
+        printDivider();
+        System.out.println("\t\tWell Done sir! I've marked this task as done: ");
+        System.out.println(String.format("\t\t%s", task));
+        printDivider();
+    }
+
+    private static void unMarkTask(String input) {
+        String trimmedIndex = input.substring(7).trim();
+
+        int index = Integer.parseInt(trimmedIndex);
+        Task task = lists.get(index - 1);
+        task.markAsUnDone();
+
+        printDivider();
+        System.out.println("\t\tAlright, I've marked this task as not done: ");
+        System.out.println(String.format("\t\t%s", task));
+        printDivider();
     }
 
     private static void printList() {
