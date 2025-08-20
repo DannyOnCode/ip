@@ -1,0 +1,20 @@
+todo study for final exam
+deadline CS2103 project /by 2025-10-31 2359
+event group meeting /from Mon 10am /to 11am
+todo prepare for presentation
+mark 1
+list
+unmark 1
+list
+todo
+deadline
+event
+mark
+wrongcommand todo item
+deadline finish homework /by
+event concert /from /to
+mark abc
+unmark 99
+unmark -1
+list
+bye

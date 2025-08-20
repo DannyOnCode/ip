@@ -21,8 +21,8 @@ public class Aura {
     private static void echo() {
         String input;
         boolean flag = true;
+        Scanner scanner = new Scanner(System.in);
         while (flag) {
-            Scanner scanner = new Scanner(System.in);
             input = scanner.nextLine();
 
             switch (input.toLowerCase()) {
@@ -87,8 +87,8 @@ public class Aura {
             replyPrint(String.format("%s", task));
         } catch (NumberFormatException e) {
             printDivider();
-            System.out.println("You've used the command mark but the index is invalid.");
-            System.out.println("If this was intended, please use a different keyword (e.g \"check\")");
+            replyPrint("You've used the command mark but the index is invalid.");
+            replyPrint("If this was intended, please use a different keyword (e.g \"check\")");
         } catch (IndexOutOfBoundsException e) {
             printDivider();
             System.out.println("WHAT? Your input index was not in the list");
