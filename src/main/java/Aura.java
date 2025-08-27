@@ -1,5 +1,6 @@
 import jdk.jfr.Event;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +12,17 @@ public class Aura {
             + "  / _ \\| | | | '__/ _` |\n"
             + " / ___ \\ |_| | | | (_| |\n"
             + "/_/   \\_\\__,_|_|  \\__,_|\n";
-    private static final List<Task> lists = new ArrayList<>();
+    private static List<Task> lists = new ArrayList<>();
 
     public static void main(String[] args) {
         greeting();
+        try {
+            loadTask();
+        } catch (IOException e) {
+            printDivider();
+            replyPrint("Failed to load save file");
+            throw new RuntimeException(e);
+        }
         echo();
     }
 
@@ -71,6 +79,7 @@ public class Aura {
 
     private static void exit() {
         printDivider();
+        saveFile();
         replyPrint("Bye Bye my friend");
         printDivider();
     }
@@ -201,5 +210,15 @@ public class Aura {
 
     private static void replyPrint(String text) {
         System.out.println("\t\t" + text);
+    }
+
+    private static void saveFile() {
+        Storage store = new Storage();
+        replyPrint(store.saveTasks(lists));
+    }
+
+    private static void loadTask() throws IOException {
+        Storage store = new Storage();
+        lists = store.loadTasks();
     }
 }
