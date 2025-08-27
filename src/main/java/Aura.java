@@ -1,15 +1,10 @@
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Aura {
     private final Ui ui;
     private final Storage storage;
-    private TaskList tasks;
+    private final TaskList tasks;
 
     public static void main(String[] args) {
         new Aura("./data/Aura.txt").run();
@@ -30,7 +25,7 @@ public class Aura {
         this.ui.greeting();
         String input;
         boolean flag = true;
-        boolean isUpdated = false;
+        boolean isUpdated;
         while (flag) {
             input = this.ui.getInput();
 
