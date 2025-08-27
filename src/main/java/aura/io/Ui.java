@@ -1,3 +1,5 @@
+package aura.io;
+
 public class Ui {
     private final String ASSISTANCE_NAME = "Aura";
     private final String LOGO = """

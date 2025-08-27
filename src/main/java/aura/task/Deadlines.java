@@ -1,20 +1,19 @@
+package aura.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Events extends Task{
-    protected LocalDateTime from;
-    protected LocalDateTime to;
+public class Deadlines extends Task {
+    protected LocalDateTime by;
 
-    public Events(String description, LocalDateTime from, LocalDateTime to) {
+    public Deadlines(String description, LocalDateTime by) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.by = by;
     }
 
-    public Events(String description, boolean isDone, LocalDateTime from, LocalDateTime to) {
+    public Deadlines(String description, boolean isDone, LocalDateTime by) {
         super(description, isDone);
-        this.from = from;
-        this.to = to;
+        this.by = by;
     }
 
     private String convertDateToString(LocalDateTime date) {
@@ -29,12 +28,12 @@ public class Events extends Task{
 
     @Override
     public String getSaveLineFormat() {
-        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), convertDateToSave(this.from), convertDateToSave(this.to));
+        return String.format("D|%s|%s\n", super.getSaveLineFormat(), convertDateToSave(this.by));
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)",
-                super.toString(), convertDateToString(this.from), convertDateToString(this.to));
+        return String.format("[D]%s (by %s)",
+                super.toString(), convertDateToString(this.by));
     }
 }
