@@ -8,6 +8,17 @@ public class Events extends Task{
         this.to = to;
     }
 
+    public Events(String description, boolean isDone, String from, String to) {
+        super(description, isDone);
+        this.from = from;
+        this.to = to;
+    }
+
+    @Override
+    public String getSaveLineFormat() {
+        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), this.from, this.to);
+    }
+
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)",

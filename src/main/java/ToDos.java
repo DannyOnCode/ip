@@ -3,6 +3,14 @@ public class ToDos extends Task{
         super(description);
     }
 
+    public ToDos(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    public String getSaveLineFormat() {
+        return String.format("T|%s\n", super.getSaveLineFormat());
+    }
+
     @Override
     public String toString() {
         return String.format("[T]%s", super.toString());
