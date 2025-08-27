@@ -15,6 +15,11 @@ public class Events extends Task{
     }
 
     @Override
+    public String getSaveLineFormat() {
+        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), this.from, this.to);
+    }
+
+    @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)",
                 super.toString(), this.from, this.to);

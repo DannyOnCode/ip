@@ -24,6 +24,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String getSaveLineFormat() {
+        return String.format("%s|%s", this.description, this.isDone ? "1" : "0");
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), this.description);

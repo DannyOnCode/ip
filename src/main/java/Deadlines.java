@@ -12,6 +12,11 @@ public class Deadlines extends Task{
     }
 
     @Override
+    public String getSaveLineFormat() {
+        return String.format("D|%s|%s\n", super.getSaveLineFormat(), this.by);
+    }
+
+    @Override
     public String toString() {
         return String.format("[D]%s (by %s)",
                 super.toString(), this.by);
