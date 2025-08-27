@@ -50,9 +50,9 @@ public class Storage {
                 fileWriter.write(task.getSaveLineFormat());
             }
 
-            return "Successfully saved file to " + this.filePath;
+            return "Updated save file at " + this.filePath;
         } catch (IOException e) {
-            System.out.println("There seems to have been a problem");
+            System.out.println("There seems to have been an issue saving the tasks");
             throw new RuntimeException(e);
         }
     }

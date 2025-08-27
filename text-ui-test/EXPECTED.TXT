@@ -8,118 +8,123 @@ Hello! I'm Aura
 What can I do for you?
 ____________________________________________________________
     ____________________________________________________________
-		Got it. I've added this task:
-		  [T][ ] study for final exam
-		Now you have 1 tasks in the list.
+	Got it. I've added this task:
+	  [T][ ] study for final exam
+	Now you have 1 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Got it. I've added this task:
+	  [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
+	Now you have 2 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Got it. I've added this task:
+	  [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
+	Now you have 3 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Got it. I've added this task:
+	  [T][ ] prepare for presentation
+	Now you have 4 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Well Done sir! I've marked this task as done: 
+	[T][X] study for final exam
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	1. [T][X] study for final exam
+	2. [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
+	3. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
+	4. [T][ ] prepare for presentation
     ____________________________________________________________
     ____________________________________________________________
-		Got it. I've added this task:
-		  [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
-		Now you have 2 tasks in the list.
+	Alright, I've marked this task as not done: 
+	[T][ ] study for final exam
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	1. [T][ ] study for final exam
+	2. [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
+	3. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
+	4. [T][ ] prepare for presentation
     ____________________________________________________________
     ____________________________________________________________
-		Got it. I've added this task:
-		  [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
-		Now you have 3 tasks in the list.
+	Understood Sir, I have removed the task: 
+	  [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
+	Now you have 3 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Understood Sir, I have removed the task: 
+	  [T][ ] prepare for presentation
+	Now you have 2 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	1. [T][ ] study for final exam
+	2. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
     ____________________________________________________________
     ____________________________________________________________
-		Got it. I've added this task:
-		  [T][ ] prepare for presentation
-		Now you have 4 tasks in the list.
+	ERROR SIR!! The description of the command todo cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Well Done sir! I've marked this task as done: 
-		[T][X] study for final exam
+	ERROR SIR!! The description of the command deadline cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		1. [T][X] study for final exam
-		2. [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
-		3. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
-		4. [T][ ] prepare for presentation
+	ERROR SIR!! The description of the command event cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Alright, I've marked this task as not done: 
-		[T][ ] study for final exam
+	ERROR SIR!! The description of the command mark cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		1. [T][ ] study for final exam
-		2. [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
-		3. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
-		4. [T][ ] prepare for presentation
+	ERROR SIR!! The description of the command delete cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-		Understood Sir, I have removed the task: 
-		  [D][ ] CS2103 project (by Oct 30 2025, 11:59 pm)
-		Now you have 3 tasks in the list.
+	Your input was invalid, make sure to include a valid command
     ____________________________________________________________
     ____________________________________________________________
-		Understood Sir, I have removed the task: 
-		  [T][ ] prepare for presentation
-		Now you have 2 tasks in the list.
+	Please follow the format "deadline [Task] /by [Due date]"
     ____________________________________________________________
     ____________________________________________________________
-		1. [T][ ] study for final exam
-		2. [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
+	Please follow the format "event [Task] /from [Start date] /to [End date]"
     ____________________________________________________________
     ____________________________________________________________
-		ERROR SIR!! The description of the command todo cannot be empty.
+	You've used the command mark but the index is invalid.
+	If this was intended, please use a different keyword (e.g "check")
     ____________________________________________________________
     ____________________________________________________________
-		ERROR SIR!! The description of the command deadline cannot be empty.
+	WHAT? Your input index was not in the list
     ____________________________________________________________
     ____________________________________________________________
-		ERROR SIR!! The description of the command event cannot be empty.
+	WHAT? Your input index was not in the list
     ____________________________________________________________
     ____________________________________________________________
-		ERROR SIR!! The description of the command mark cannot be empty.
+	WHAT? Your input index was not in the list
     ____________________________________________________________
     ____________________________________________________________
-		ERROR SIR!! The description of the command delete cannot be empty.
+	WHAT? Your input index was not in the list
     ____________________________________________________________
     ____________________________________________________________
-		Your input was invalid, make sure to include a valid command
+	You've used the command delete but the index is invalid.
     ____________________________________________________________
     ____________________________________________________________
-		Please follow the format "deadline [Task] /by [Due date]"
+	Understood Sir, I have removed the task: 
+	  [T][ ] study for final exam
+	Now you have 1 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
+    ____________________________________________________________
+	Understood Sir, I have removed the task: 
+	  [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
+	Now you have 0 tasks in the list.
+    ____________________________________________________________
+	Updated save file at ./data/Aura.txt
     ____________________________________________________________
     ____________________________________________________________
-		Please follow the format yyyy-mm-dd HHmm and ensure the date is correct
-    ____________________________________________________________
-    ____________________________________________________________
-		Please follow the format "event [Task] /from [Start date] /to [End date]"
-    ____________________________________________________________
-    ____________________________________________________________
-		You've used the command mark but the index is invalid.
-		If this was intended, please use a different keyword (e.g "check")
-    ____________________________________________________________
-    ____________________________________________________________
-		WHAT? Your input index was not in the list
-    ____________________________________________________________
-    ____________________________________________________________
-		WHAT? Your input index was not in the list
-    ____________________________________________________________
-    ____________________________________________________________
-		WHAT? Your input index was not in the list
-    ____________________________________________________________
-    ____________________________________________________________
-		WHAT? Your input index was not in the list
-    ____________________________________________________________
-    ____________________________________________________________
-		You've used the command delete but the index is invalid.
-    ____________________________________________________________
-    ____________________________________________________________
-		Understood Sir, I have removed the task: 
-		  [T][ ] study for final exam
-		Now you have 1 tasks in the list.
-    ____________________________________________________________
-    ____________________________________________________________
-		Understood Sir, I have removed the task: 
-		  [E][ ] group meeting (from: Oct 30 2025, 2:00 am to: May 22 2035, 11:59 pm)
-		Now you have 0 tasks in the list.
-    ____________________________________________________________
-    ____________________________________________________________
-    ____________________________________________________________
-    ____________________________________________________________
-		Successfully saved file to ./data/aura.txt
-		Bye Bye my friend
+	Bye Bye my friend
     ____________________________________________________________
