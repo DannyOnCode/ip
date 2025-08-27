@@ -1,27 +1,40 @@
-public class Events extends Task{
-    protected String from;
-    protected String to;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Events(String description, String from, String to) {
+public class Events extends Task{
+    protected LocalDateTime from;
+    protected LocalDateTime to;
+
+    public Events(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;
         this.to = to;
     }
 
-    public Events(String description, boolean isDone, String from, String to) {
+    public Events(String description, boolean isDone, LocalDateTime from, LocalDateTime to) {
         super(description, isDone);
         this.from = from;
         this.to = to;
     }
 
+    private String convertDateToString(LocalDateTime date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
+        return date.format(dateTimeFormatter);
+    }
+
+    private String convertDateToSave(LocalDateTime date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return date.format(dateTimeFormatter);
+    }
+
     @Override
     public String getSaveLineFormat() {
-        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), this.from, this.to);
+        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), convertDateToSave(this.from), convertDateToSave(this.to));
     }
 
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)",
-                super.toString(), this.from, this.to);
+                super.toString(), convertDateToString(this.from), convertDateToString(this.to));
     }
 }

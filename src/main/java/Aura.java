@@ -1,6 +1,8 @@
-import jdk.jfr.Event;
-
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -175,7 +177,10 @@ public class Aura {
         try {
             String trimmedTask = input.substring(9).trim();
             String[] splitDeadline = trimmedTask.split("/by");
-            addTask(new Deadlines(splitDeadline[0].trim(), splitDeadline[1].trim()));
+            LocalDateTime byDate = parseStringToDate(splitDeadline[1].trim());
+            if (byDate != null) {
+                addTask(new Deadlines(splitDeadline[0].trim(), byDate));
+            }
         } catch (Exception e) {
             printDivider();
             replyPrint("Please follow the format \"deadline [Task] /by [Due date]\"");
@@ -188,7 +193,11 @@ public class Aura {
             String trimmedTask = input.substring(6).trim();
             String[] splitEvent = trimmedTask.split("/from");
             String[] splitDateRange = splitEvent[1].split("/to");
-            addTask(new Events(splitEvent[0].trim(), splitDateRange[0].trim(), splitDateRange[1].trim()));
+            LocalDateTime fromDate = parseStringToDate(splitDateRange[0].trim());
+            LocalDateTime toDate = parseStringToDate(splitDateRange[1].trim());
+            if (fromDate != null && toDate != null) {
+                addTask(new Events(splitEvent[0].trim(), fromDate, toDate));
+            }
         } catch (Exception e) {
             printDivider();
             replyPrint("Please follow the format \"event [Task] /from [Start date] /to [End date]\"");
@@ -215,6 +224,18 @@ public class Aura {
     private static void saveFile() {
         Storage store = new Storage();
         replyPrint(store.saveTasks(lists));
+    }
+
+    private static LocalDateTime parseStringToDate(String dateTime) {
+        try {
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            return LocalDateTime.parse(dateTime, inputFormatter);
+        } catch (DateTimeParseException e) {
+            printDivider();
+            replyPrint("Please follow the format yyyy-mm-dd HHmm and ensure the date is correct");
+            printDivider();
+            return null;
+        }
     }
 
     private static void loadTask() throws IOException {
