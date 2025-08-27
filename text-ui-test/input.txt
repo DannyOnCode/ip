@@ -1,6 +1,6 @@
 todo study for final exam
-deadline CS2103 project /by 2025-10-31 2359
-event group meeting /from Mon 10am /to 11am
+deadline CS2103 project /by 2025-10-30 2359
+event group meeting /from 2025-10-30 0200 /to 2035-05-22 2359
 todo prepare for presentation
 mark 1
 list
@@ -23,5 +23,7 @@ unmark -1
 delete -49
 delete 12317
 delete hello
+delete 1
+delete 1
 list
 bye

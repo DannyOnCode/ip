@@ -1,4 +1,7 @@
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +36,8 @@ public class Storage {
 
             switch (details[0]) {
                 case "T" -> tasks.add(new ToDos(details[1], details[2].equals("1")));
-                case "D" -> tasks.add(new Deadlines(details[1], details[2].equals("1"), details[3]));
-                case "E" -> tasks.add(new Events(details[1], details[2].equals("1"), details[3], details[4]));
+                case "D" -> tasks.add(new Deadlines(details[1], details[2].equals("1"), parseStringToDate(details[3])));
+                case "E" -> tasks.add(new Events(details[1], details[2].equals("1"), parseStringToDate(details[3]), parseStringToDate(details[4])));
                 default -> System.out.println("A line was corrupted :" + Arrays.toString(details));
             }
         }
@@ -51,6 +54,15 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("There seems to have been a problem");
             throw new RuntimeException(e);
+        }
+    }
+
+    private static LocalDateTime parseStringToDate(String dateTime) {
+        try {
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            return LocalDateTime.parse(dateTime, inputFormatter);
+        } catch (DateTimeParseException e) {
+            return null;
         }
     }
 }
