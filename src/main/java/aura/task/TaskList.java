@@ -27,11 +27,7 @@ public class TaskList {
     }
 
     public void printList() {
-        ui.printDivider();
-        for (int i = 0; i < lists.size(); i++) {
-            ui.replyPrint(String.format("%d. %s", (i + 1), lists.get(i)));
-        }
-        ui.printDivider();
+        ui.displayGivenList(this.lists);
     }
 
     public boolean addTask(Task task) {
@@ -178,5 +174,25 @@ public class TaskList {
             ui.printDivider();
             return false;
         }
+    }
+
+    public List<Task> getTasksWithKeyword(String input) {
+        try {
+            String trimmedKeyword = input.substring(5).trim();
+
+            List<Task> filteredTask = new ArrayList<>();
+            for (Task task : lists) {
+                if (task.containsKeyword(trimmedKeyword)) {
+                    filteredTask.add(task);
+                }
+            }
+            return filteredTask;
+        } catch (Exception e) {
+            ui.printDivider();
+            ui.replyPrint("Please enter a valid keyword");
+            ui.printDivider();
+            return null;
+        }
+
     }
 }

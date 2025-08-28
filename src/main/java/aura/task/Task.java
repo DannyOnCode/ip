@@ -30,6 +30,9 @@ public abstract class Task {
         return String.format("%s|%s", this.description, this.isDone ? "1" : "0");
     }
 
+    public boolean containsKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), this.description);
