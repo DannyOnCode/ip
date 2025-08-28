@@ -66,7 +66,7 @@ public abstract class Task {
      * Returns a boolean value representing if task description contains specified keyword.
      * This comparison is case-sensitive.
      *
-     * @param keyword
+     * @param keyword The keyword to be matched
      * @return true if the keyword is found, false otherwise.
      */
     public boolean containsKeyword(String keyword) {
