@@ -9,23 +9,45 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages the list of tasks, including adding, deleting, and modifying tasks.
+ */
 public class TaskList {
     private List<Task> lists;
     private final Ui ui;
 
+    /**
+     * Constructs a TaskList object.
+     * Initializes an empty list of tasks and a Ui object for user interaction.
+     */
     public TaskList() {
         this.lists = new ArrayList<>();
         this.ui = new Ui();
     }
 
+    /**
+     * Loads tasks from a storage file into the task list.
+     *
+     * @param storage The storage handler to load tasks from.
+     * @throws IOException If an error occurs during file reading.
+     */
     public void loadTask(Storage storage) throws IOException {
         this.lists = storage.loadTasks();
     }
 
+    /**
+     * Saves the current list of tasks to the storage file.
+     *
+     * @param storage The storage handler to save tasks to.
+     * @return A confirmation message.
+     */
     public String saveFile(Storage storage) {
         return storage.saveTasks(this.lists);
     }
 
+    /**
+     * Prints all tasks in the list to the console.
+     */
     public void printList() {
         ui.printDivider();
         for (int i = 0; i < lists.size(); i++) {
@@ -34,6 +56,12 @@ public class TaskList {
         ui.printDivider();
     }
 
+    /**
+     * Adds a task to the list and displays a confirmation message.
+     *
+     * @param task The task to be added.
+     * @return true, indicating the operation was successful.
+     */
     public boolean addTask(Task task) {
         this.lists.add(task);
         ui.printDivider();
@@ -44,6 +72,12 @@ public class TaskList {
         return true;
     }
 
+    /**
+     * Deletes a task from the list based on user input.
+     *
+     * @param input The user command, including the index of the task to delete.
+     * @return true if the task was deleted successfully, false otherwise.
+     */
     public boolean deleteTask(String input) {
         try {
             String trimmedIndex = input.substring(7).trim();
@@ -70,6 +104,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as done based on user input.
+     *
+     * @param input The user command, including the index of the task to mark.
+     * @return true if the task was marked successfully, false otherwise.
+     */
     public boolean markTask(String input) {
         try {
             String trimmedIndex = input.substring(5).trim();
@@ -96,6 +136,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as not done based on user input.
+     *
+     * @param input The user command, including the index of the task to unmark.
+     * @return true if the task was unmarked successfully, false otherwise.
+     */
     public boolean unMarkTask(String input) {
         try {
             String trimmedIndex = input.substring(7).trim();
@@ -123,6 +169,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Parses user input to create and add a ToDo task.
+     *
+     * @param input The full user command for adding a to-do.
+     * @return true if the to-do was added successfully, false otherwise.
+     */
     public boolean addToDo(String input) {
         try {
             String trimmedTask = input.substring(5).trim();
@@ -135,6 +187,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Parses user input to create and add a Deadline task.
+     *
+     * @param input The full user command for adding a deadline.
+     * @return true if the deadline was added successfully, false otherwise.
+     */
     public boolean addDeadline(String input) {
         try {
             String trimmedTask = input.substring(9).trim();
@@ -156,6 +214,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Parses user input to create and add an Event task.
+     *
+     * @param input The full user command for adding an event.
+     * @return true if the event was added successfully, false otherwise.
+     */
     public boolean addEvent(String input) {
         try {
             String trimmedTask = input.substring(6).trim();

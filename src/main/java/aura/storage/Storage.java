@@ -16,17 +16,34 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Handles loading tasks from and saving tasks to a file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a Storage object with a default file path.
+     */
     public Storage() {
         this.filePath = "./data/aura.txt";
     }
 
+    /**
+     * Constructs a Storage object with a specified file path.
+     *
+     * @param filePath The path to the storage file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the storage file.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws IOException If an error occurs during file reading.
+     */
     public List<Task> loadTasks() throws IOException {
         File taskFile = new File(this.filePath);
 
@@ -51,6 +68,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the list of tasks to the storage file.
+     *
+     * @param taskList The list of tasks to be saved.
+     * @return A confirmation message.
+     */
     public String saveTasks(List<Task> taskList) {
         try (FileWriter fileWriter = new FileWriter(this.filePath)) {
             for (Task task : taskList) {
@@ -64,6 +87,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a date-time string into a LocalDateTime object.
+     *
+     * @param dateTime The date-time string to parse.
+     * @return The parsed LocalDateTime object, or null if parsing fails.
+     */
     private static LocalDateTime parseStringToDate(String dateTime) {
         try {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
