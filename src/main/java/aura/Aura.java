@@ -2,6 +2,7 @@ package aura;
 
 import aura.io.Ui;
 import aura.storage.Storage;
+import aura.task.Task;
 import aura.task.TaskList;
 
 import java.io.IOException;
@@ -54,6 +55,10 @@ public class Aura {
                         isUpdated = this.tasks.addEvent(input);
                     } else if (input.toLowerCase().startsWith("delete ")) {
                         isUpdated = this.tasks.deleteTask(input);
+                    } else if (input.toLowerCase().startsWith("find ")) {
+                        List<Task> filteredTasks = this.tasks.getTasksWithKeyword(input);
+                        this.ui.displayGivenList(filteredTasks);
+                        isUpdated = false;
                     } else {
                         String error;
                         List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
