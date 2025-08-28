@@ -10,36 +10,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> lists;
+    private List<Task> tasks;
     private final Ui ui;
 
     public TaskList() {
-        this.lists = new ArrayList<>();
+        this.tasks = new ArrayList<>();
         this.ui = new Ui();
     }
 
     public void loadTask(Storage storage) throws IOException {
-        this.lists = storage.loadTasks();
+        this.tasks = storage.loadTasks();
     }
 
     public String saveFile(Storage storage) {
-        return storage.saveTasks(this.lists);
+        return storage.saveTasks(this.tasks);
     }
 
     public void printList() {
         ui.printDivider();
-        for (int i = 0; i < lists.size(); i++) {
-            ui.replyPrint(String.format("%d. %s", (i + 1), lists.get(i)));
+        for (int i = 0; i < tasks.size(); i++) {
+            ui.replyPrint(String.format("%d. %s", (i + 1), tasks.get(i)));
         }
         ui.printDivider();
     }
 
     public boolean addTask(Task task) {
-        this.lists.add(task);
+        this.tasks.add(task);
         ui.printDivider();
         ui.replyPrint("Got it. I've added this task:");
         ui.replyPrint(String.format("  %s", task));
-        ui.replyPrint(String.format("Now you have %d tasks in the list.", this.lists.size()));
+        ui.replyPrint(String.format("Now you have %d tasks in the list.", this.tasks.size()));
         ui.printDivider();
         return true;
     }
@@ -49,12 +49,12 @@ public class TaskList {
             String trimmedIndex = input.substring(7).trim();
 
             int index = Integer.parseInt(trimmedIndex);
-            Task task = this.lists.get(index - 1);
-            this.lists.remove(index - 1);
+            Task task = this.tasks.get(index - 1);
+            this.tasks.remove(index - 1);
             ui.printDivider();
             ui.replyPrint("Understood Sir, I have removed the task: ");
             ui.replyPrint(String.format("  %s", task));
-            ui.replyPrint(String.format("Now you have %d tasks in the list.", this.lists.size()));
+            ui.replyPrint(String.format("Now you have %d tasks in the list.", this.tasks.size()));
             ui.printDivider();
             return true;
         } catch (NumberFormatException e) {
@@ -75,7 +75,7 @@ public class TaskList {
             String trimmedIndex = input.substring(5).trim();
 
             int index = Integer.parseInt(trimmedIndex);
-            Task task = this.lists.get(index - 1);
+            Task task = this.tasks.get(index - 1);
             task.markAsDone();
             ui.printDivider();
             ui.replyPrint("Well Done sir! I've marked this task as done: ");
@@ -101,7 +101,7 @@ public class TaskList {
             String trimmedIndex = input.substring(7).trim();
 
             int index = Integer.parseInt(trimmedIndex);
-            Task task = this.lists.get(index - 1);
+            Task task = this.tasks.get(index - 1);
             task.markAsUnDone();
 
             ui.printDivider();

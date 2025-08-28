@@ -36,16 +36,16 @@ public class Storage {
         Scanner scanFile = new Scanner(taskFile);
         List<Task> tasks = new ArrayList<>();
 
-        String[] details;
+        String[] taskParts;
         while (scanFile.hasNext()) {
             String nextLine = scanFile.nextLine();
-            details = nextLine.split("\\|");
+            taskParts = nextLine.split("\\|");
 
-            switch (details[0]) {
-                case "T" -> tasks.add(new ToDos(details[1], details[2].equals("1")));
-                case "D" -> tasks.add(new Deadlines(details[1], details[2].equals("1"), parseStringToDate(details[3])));
-                case "E" -> tasks.add(new Events(details[1], details[2].equals("1"), parseStringToDate(details[3]), parseStringToDate(details[4])));
-                default -> System.out.println("A line was corrupted :" + Arrays.toString(details));
+            switch (taskParts[0]) {
+                case "T" -> tasks.add(new ToDos(taskParts[1], taskParts[2].equals("1")));
+                case "D" -> tasks.add(new Deadlines(taskParts[1], taskParts[2].equals("1"), parseStringToDate(taskParts[3])));
+                case "E" -> tasks.add(new Events(taskParts[1], taskParts[2].equals("1"), parseStringToDate(taskParts[3]), parseStringToDate(taskParts[4])));
+                default -> System.out.println("A line was corrupted :" + Arrays.toString(taskParts));
             }
         }
         return tasks;

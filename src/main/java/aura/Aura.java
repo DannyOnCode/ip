@@ -30,15 +30,15 @@ public class Aura {
     public void run() {
         this.ui.greeting();
         String input;
-        boolean flag = true;
+        boolean isRunning = true;
         boolean isUpdated;
-        while (flag) {
+        while (isRunning) {
             input = this.ui.getInput();
 
             switch (input.toLowerCase()) {
                 case "bye" -> {
                     ui.exitMessage();
-                    flag = false;
+                    isRunning = false;
                 }
                 case "list" -> this.tasks.printList();
                 default -> {
