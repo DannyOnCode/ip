@@ -34,6 +34,7 @@ application {
 shadowJar {
     archiveBaseName = "aura"
     archiveClassifier = null
+    archiveFileName = 'aura.jar'
 }
 
 run{
