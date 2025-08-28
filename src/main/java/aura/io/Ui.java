@@ -47,6 +47,11 @@ public class Ui {
         return this.parser.getInput();
     }
 
+    /**
+     * Displays a given list of tasks to the user in a numbered format.
+     *
+     * @param taskList The list of tasks to be displayed.
+     */
     public void displayGivenList(List<Task> taskList) {
         printDivider();
         for (int i = 0; i < taskList.size(); i++) {

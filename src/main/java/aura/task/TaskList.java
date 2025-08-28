@@ -176,6 +176,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Filters the task list and returns a new list containing only tasks
+     * whose descriptions contain the given keyword.
+     *
+     * @param input The full user command, including the keyword (e.g., "find book").
+     * @return A new list of tasks that match the keyword, or null if the input is invalid.
+     */
     public List<Task> getTasksWithKeyword(String input) {
         try {
             String trimmedKeyword = input.substring(5).trim();
