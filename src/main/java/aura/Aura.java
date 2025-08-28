@@ -8,15 +8,30 @@ import aura.task.TaskList;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The main class for the Aura application.
+ * This class initializes the application and manages the main run loop.
+ */
 public class Aura {
     private final Ui ui;
     private final Storage storage;
     private final TaskList tasks;
 
+    /**
+     * The main entry point of the Aura application.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         new Aura("./data/Aura.txt").run();
     }
 
+    /**
+     * Constructs an Aura object.
+     * Initializes the UI, storage, and task list components.
+     *
+     * @param filePath The path to the file where tasks are stored.
+     */
     public Aura(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -28,6 +43,10 @@ public class Aura {
         }
     }
 
+    /**
+     * Starts the main run loop of the application.
+     * It processes user commands until the "bye" command is entered.
+     */
     public void run() {
         this.ui.greeting();
         String input;
