@@ -1,5 +1,9 @@
 package aura.io;
 
+import java.util.List;
+
+import aura.task.Task;
+
 public class Ui {
     private final String ASSISTANCE_NAME = "Aura";
     private final String LOGO = """
@@ -41,5 +45,18 @@ public class Ui {
 
     public String getInput(){
         return this.parser.getInput();
+    }
+
+    /**
+     * Displays a given list of tasks to the user in a numbered format.
+     *
+     * @param taskList The list of tasks to be displayed.
+     */
+    public void displayGivenList(List<Task> taskList) {
+        printDivider();
+        for (int i = 0; i < taskList.size(); i++) {
+            replyPrint(String.format("%d. %s", (i + 1), taskList.get(i)));
+        }
+        printDivider();
     }
 }

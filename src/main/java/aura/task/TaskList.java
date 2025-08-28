@@ -27,11 +27,7 @@ public class TaskList {
     }
 
     public void printList() {
-        ui.printDivider();
-        for (int i = 0; i < tasks.size(); i++) {
-            ui.replyPrint(String.format("%d. %s", (i + 1), tasks.get(i)));
-        }
-        ui.printDivider();
+        ui.displayGivenList(this.tasks);
     }
 
     public boolean addTask(Task task) {
@@ -178,5 +174,32 @@ public class TaskList {
             ui.printDivider();
             return false;
         }
+    }
+
+    /**
+     * Filters the task list and returns a new list containing only tasks
+     * whose descriptions contain the given keyword.
+     *
+     * @param input The full user command, including the keyword (e.g., "find book").
+     * @return A new list of tasks that match the keyword, or null if the input is invalid.
+     */
+    public List<Task> getTasksWithKeyword(String input) {
+        try {
+            String trimmedKeyword = input.substring(5).trim();
+
+            List<Task> filteredTask = new ArrayList<>();
+            for (Task task : tasks) {
+                if (task.containsKeyword(trimmedKeyword)) {
+                    filteredTask.add(task);
+                }
+            }
+            return filteredTask;
+        } catch (Exception e) {
+            ui.printDivider();
+            ui.replyPrint("Please enter a valid keyword");
+            ui.printDivider();
+            return null;
+        }
+
     }
 }
