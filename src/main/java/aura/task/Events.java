@@ -66,17 +66,21 @@ public class Events extends Task {
      */
     @Override
     public String getSaveLineFormat() {
-        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(), convertDateToSave(this.from), convertDateToSave(this.to));
+        return String.format("E|%s|%s|%s\n", super.getSaveLineFormat(),
+                convertDateToSave(this.from),
+                convertDateToSave(this.to));
     }
 
     /**
      * Returns the string representation of the task for display.
      *
-     * @return A formatted string for displaying to the user (e.g., [E][X] Submit CS2103 (from Aug 28 2025 2:09 pm to Aug 28 2025 2:20 pm).
+     * @return A formatted string for displaying to the user
+     *      (e.g., [E][X] Submit CS2103 (from Aug 28 2025 2:09 pm to Aug 28 2025 2:20 pm).
      */
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)",
-                super.toString(), convertDateToString(this.from), convertDateToString(this.to));
+                super.toString(), convertDateToString(this.from),
+                convertDateToString(this.to));
     }
 }

@@ -1,7 +1,10 @@
 package aura.task;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+
 
 /**
  * Test class for the ToDos class.
@@ -25,7 +28,7 @@ public class ToDosTest {
     public void getSaveLineFormat_formatForSaving_correctFormat() {
         ToDos todo = new ToDos("Shower");
         todo.markAsDone();
-        assertEquals("T|1|Shower\n", todo.getSaveLineFormat());
+        assertEquals("T|Shower|1\n", todo.getSaveLineFormat());
     }
 
     /**

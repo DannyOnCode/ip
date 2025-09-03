@@ -9,8 +9,8 @@ import aura.task.Task;
  * This class is responsible for displaying messages to the user and reading user input.
  */
 public class Ui {
-    private final String ASSISTANCE_NAME = "Aura";
-    private final String LOGO = """
+    private static final String ASSISTANCE_NAME = "Aura";
+    private static final String LOGO = """
                 _
                / \\  _   _ _ __ __ _
               / _ \\| | | | '__/ _` |
@@ -23,7 +23,7 @@ public class Ui {
      * Constructs a Ui object.
      * Initializes the parser for reading user input.
      */
-    public Ui(){
+    public Ui() {
         this.parser = new Parser();
     }
 
@@ -74,7 +74,7 @@ public class Ui {
      *
      * @return The user's input as a String.
      */
-    public String getInput(){
+    public String getInput() {
         return this.parser.getInput();
     }
 
