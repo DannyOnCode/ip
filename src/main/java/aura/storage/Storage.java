@@ -1,20 +1,22 @@
 package aura.storage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 import aura.task.Deadlines;
 import aura.task.Events;
 import aura.task.Task;
 import aura.task.ToDos;
 
-import java.io.FileWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+
 
 /**
  * Handles loading tasks from and saving tasks to a file.
@@ -60,8 +62,10 @@ public class Storage {
 
             switch (taskParts[0]) {
                 case "T" -> tasks.add(new ToDos(taskParts[1], taskParts[2].equals("1")));
-                case "D" -> tasks.add(new Deadlines(taskParts[1], taskParts[2].equals("1"), parseStringToDate(taskParts[3])));
-                case "E" -> tasks.add(new Events(taskParts[1], taskParts[2].equals("1"), parseStringToDate(taskParts[3]), parseStringToDate(taskParts[4])));
+                case "D" -> tasks.add(new Deadlines(taskParts[1], taskParts[2].equals("1"),
+                        parseStringToDate(taskParts[3])));
+                case "E" -> tasks.add(new Events(taskParts[1], taskParts[2].equals("1"),
+                        parseStringToDate(taskParts[3]), parseStringToDate(taskParts[4])));
                 default -> System.out.println("A line was corrupted :" + Arrays.toString(taskParts));
             }
         }

@@ -1,12 +1,12 @@
 package aura;
 
+import java.io.IOException;
+import java.util.List;
+
 import aura.io.Ui;
 import aura.storage.Storage;
 import aura.task.Task;
 import aura.task.TaskList;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * The main class for the Aura application.
@@ -16,15 +16,6 @@ public class Aura {
     private final Ui ui;
     private final Storage storage;
     private final TaskList tasks;
-
-    /**
-     * The main entry point of the Aura application.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public static void main(String[] args) {
-        new Aura("./data/Aura.txt").run();
-    }
 
     /**
      * Constructs an Aura object.
@@ -82,7 +73,8 @@ public class Aura {
                         String error;
                         List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
                         if (commands.contains(input)) {
-                            error = String.format("ERROR SIR!! The description of the command %s cannot be empty.", input);
+                            error = String.format("ERROR SIR!! The description of the command %s cannot be empty.",
+                                    input);
                         } else {
                             error = "Your input was invalid, make sure to include a valid command";
                         }
@@ -98,5 +90,14 @@ public class Aura {
                 }
             }
         }
+    }
+
+    /**
+     * The main entry point of the Aura application.
+     *
+     * @param args Command line arguments (not used).
+     */
+    public static void main(String[] args) {
+        new Aura("./data/Aura.txt").run();
     }
 }
