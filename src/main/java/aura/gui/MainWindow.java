@@ -1,6 +1,7 @@
 package aura.gui;
 
 import aura.Aura;
+import aura.io.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,12 +23,19 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private final Ui ui = new Ui();
     private Aura aura;
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private final Image auraImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initialises the bot and sends a greeting message
+     */
     @FXML
     public void initialize() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getAuraDialog(ui.greeting(), auraImage)
+        );
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 

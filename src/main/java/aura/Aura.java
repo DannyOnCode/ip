@@ -38,13 +38,13 @@ public class Aura {
      * It processes user commands until the "bye" command is entered.
      */
     public void run() {
-        this.ui.greeting();
+        System.out.println(ui.greeting());
         String input;
         boolean isRunning = true;
         while (isRunning) {
             input = this.ui.getInput();
             if (input.equalsIgnoreCase("bye")) {
-                ui.exitMessage();
+                ui.replyPrint(ui.exitMessage());
                 isRunning = false;
             }
             ui.replyPrint(handleUserCommand(input));
@@ -62,7 +62,7 @@ public class Aura {
         String returnText = "";
         switch (input.toLowerCase()) {
             case "bye" -> {
-                ui.exitMessage();
+                returnText = ui.exitMessage();
             }
             case "list" -> {
                 returnText = this.tasks.printList();

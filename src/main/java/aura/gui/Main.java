@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * A GUI for Aura using FXML.
  */
 public class Main extends Application {
-    private Scene scene;
     private final Aura aura = new Aura("./data/Aura.txt");
 
     @Override

@@ -30,19 +30,17 @@ public class Ui {
     /**
      * Displays the welcome message to the user.
      */
-    public void greeting() {
-        System.out.println("____________________________________________________________");
-        System.out.println(this.LOGO
-                + "Hello! I'm " + this.ASSISTANCE_NAME + "\n"
+    public String greeting() {
+        return (LOGO
+                + "Hello! I'm " + ASSISTANCE_NAME + "\n"
                 + "What can I do for you?");
-        System.out.println("____________________________________________________________");
     }
 
     /**
      * Displays the exit message to the user.
      */
-    public void exitMessage() {
-        replyPrint("Bye Bye my friend");
+    public String exitMessage() {
+        return "Bye Bye my friend";
     }
 
     /**
