@@ -43,7 +43,6 @@ public class Ui {
      */
     public void exitMessage() {
         replyPrint("Bye Bye my friend");
-        printDivider();
     }
 
     /**
@@ -82,12 +81,13 @@ public class Ui {
      * Displays a given list of tasks to the user in a numbered format.
      *
      * @param taskList The list of tasks to be displayed.
+     * @return String to be given to GUI
      */
-    public void displayGivenList(List<Task> taskList) {
-        printDivider();
+    public String displayGivenList(List<Task> taskList) {
+        StringBuilder returnString = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
-            replyPrint(String.format("%d. %s", (i + 1), taskList.get(i)));
+            returnString.append(String.format("%d. %s\n", (i + 1), taskList.get(i)));
         }
-        printDivider();
+        return returnString.toString();
     }
 }
