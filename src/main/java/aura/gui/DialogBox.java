@@ -49,10 +49,24 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    /**
+     * Creates a DialogBox for a user message. The image is on the right by default.
+     *
+     * @param text The text from the user.
+     * @param img The user's display picture.
+     * @return A new DialogBox instance configured for a user message.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a DialogBox for an Aura message. The layout is flipped so the image is on the left.
+     *
+     * @param text The response text from Aura.
+     * @param img Aura's display picture.
+     * @return A new DialogBox instance configured for Aura message.
+     */
     public static DialogBox getAuraDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

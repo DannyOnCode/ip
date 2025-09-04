@@ -10,15 +10,14 @@ import aura.io.Ui;
 import aura.storage.Storage;
 
 /**
- * Manages the list of tasks, including adding, deleting, and modifying tasks.
+ * Manages a list of tasks, providing methods to add, delete, and modify them.
  */
 public class TaskList {
     private List<Task> tasks;
     private final Ui ui;
 
     /**
-     * Constructs a TaskList object.
-     * Initializes an empty list of tasks and a Ui object for user interaction.
+     * Constructs a TaskList object, initializing an empty list and a UI for interaction.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -26,7 +25,7 @@ public class TaskList {
     }
 
     /**
-     * Loads tasks from a storage file into the task list.
+     * Loads tasks from a storage file into the list.
      *
      * @param storage The storage handler to load tasks from.
      * @throws IOException If an error occurs during file reading.
@@ -36,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Saves the current list of tasks to the storage file.
+     * Saves the current task list to the storage file.
      *
      * @param storage The storage handler to save tasks to.
      * @return A confirmation message.
@@ -46,17 +45,19 @@ public class TaskList {
     }
 
     /**
-     * Prints all tasks in the list to the console.
+     * Formats and returns a string representation of all tasks in the list.
+     *
+     * @return A string listing all tasks.
      */
     public String printList() {
         return ui.displayGivenList(this.tasks);
     }
 
     /**
-     * Adds a task to the list and displays a confirmation message.
+     * Adds a single task to the list and returns a confirmation message.
      *
      * @param task The task to be added.
-     * @return Output String for the task to be added
+     * @return A string confirming the addition and showing the new task count.
      */
     public String addTask(Task task) {
         this.tasks.add(task);
@@ -66,10 +67,10 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task from the list based on user input.
+     * Deletes a task by its index from user input. Handles invalid input or index out of bounds.
      *
-     * @param input The user command, including the index of the task to delete.
-     * @return true if the task was deleted successfully, false otherwise.
+     * @param input The user command string (e.g., "delete 1").
+     * @return A confirmation message on success or an error message on failure.
      */
     public String deleteTask(String input) {
         try {
@@ -89,10 +90,10 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done based on user input.
+     * Marks a task as complete by its index from user input.
      *
-     * @param input The user command, including the index of the task to mark.
-     * @return true if the task was marked successfully, false otherwise.
+     * @param input The user command string (e.g., "mark 1").
+     * @return A success message or an error message if the index is invalid.
      */
     public String markTask(String input) {
         try {
@@ -112,10 +113,10 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as not done based on user input.
+     * Marks a task as not complete by its index from user input.
      *
-     * @param input The user command, including the index of the task to unmark.
-     * @return true if the task was unmarked successfully, false otherwise.
+     * @param input The user command string (e.g., "unmark 1").
+     * @return A success message or an error message.
      */
     public String unMarkTask(String input) {
         try {
@@ -139,10 +140,10 @@ public class TaskList {
     }
 
     /**
-     * Parses user input to create and add a ToDo task.
+     * Parses input to create and add a ToDo task.
      *
-     * @param input The full user command for adding a to-do.
-     * @return true if the to-do was added successfully, false otherwise.
+     * @param input The command string (e.g., "todo read book").
+     * @return A confirmation message or an error.
      */
     public String addToDo(String input) {
         try {
@@ -154,10 +155,10 @@ public class TaskList {
     }
 
     /**
-     * Parses user input to create and add a Deadline task.
+     * Parses input to create and add a Deadline task.
      *
-     * @param input The full user command for adding a deadline.
-     * @return true if the deadline was added successfully, false otherwise.
+     * @param input The command string (e.g., "deadline submit report /by 2025-10-26 1800").
+     * @return A confirmation message or an error.
      */
     public String addDeadline(String input) {
         try {
@@ -175,10 +176,10 @@ public class TaskList {
     }
 
     /**
-     * Parses user input to create and add an Event task.
+     * Parses input to create and add an Event task.
      *
-     * @param input The full user command for adding an event.
-     * @return true if the event was added successfully, false otherwise.
+     * @param input The command string (e.g., "event team meeting /from 2025-10-26 1400 /to 2025-10-26 1500").
+     * @return A confirmation message or an error.
      */
     public String addEvent(String input) {
         try {
@@ -199,11 +200,10 @@ public class TaskList {
     }
 
     /**
-     * Filters the task list and returns a new list containing only tasks
-     * whose descriptions contain the given keyword.
+     * Finds tasks containing a specific keyword and returns a list of them.
      *
-     * @param input The full user command, including the keyword (e.g., "find book").
-     * @return A new list of tasks that match the keyword, or null if the input is invalid.
+     * @param input The user command (e.g., "find report").
+     * @return A string listing matching tasks or an error if the input is invalid.
      */
     public String getTasksWithKeyword(String input) {
         try {

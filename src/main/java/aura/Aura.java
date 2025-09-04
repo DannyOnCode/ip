@@ -34,7 +34,7 @@ public class Aura {
     }
 
     /**
-     * Starts the main run loop of the application.
+     * Starts the main run loop of the application when used in CLI.
      * It processes user commands until the "bye" command is entered.
      */
     public void run() {
