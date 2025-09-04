@@ -5,7 +5,6 @@ import java.util.List;
 
 import aura.io.Ui;
 import aura.storage.Storage;
-import aura.task.Task;
 import aura.task.TaskList;
 
 /**
@@ -39,57 +38,75 @@ public class Aura {
      * It processes user commands until the "bye" command is entered.
      */
     public void run() {
-        this.ui.greeting();
+        System.out.println(ui.greeting());
         String input;
         boolean isRunning = true;
-        boolean isUpdated;
         while (isRunning) {
             input = this.ui.getInput();
+            if (input.equalsIgnoreCase("bye")) {
+                ui.replyPrint(ui.exitMessage());
+                isRunning = false;
+            }
+            ui.replyPrint(handleUserCommand(input));
+        }
+    }
 
-            switch (input.toLowerCase()) {
-                case "bye" -> {
-                    ui.exitMessage();
-                    isRunning = false;
-                }
-                case "list" -> this.tasks.printList();
-                default -> {
-                    if (input.toLowerCase().startsWith("mark ")) {
-                        isUpdated = this.tasks.markTask(input);
-                    } else if (input.toLowerCase().startsWith("unmark ")) {
-                        isUpdated = this.tasks.unMarkTask(input);
-                    } else if (input.toLowerCase().startsWith("todo ")) {
-                        isUpdated = this.tasks.addToDo(input);
-                    } else if (input.toLowerCase().startsWith("deadline ")) {
-                        isUpdated = this.tasks.addDeadline(input);
-                    } else if (input.toLowerCase().startsWith("event ")) {
-                        isUpdated = this.tasks.addEvent(input);
-                    } else if (input.toLowerCase().startsWith("delete ")) {
-                        isUpdated = this.tasks.deleteTask(input);
-                    } else if (input.toLowerCase().startsWith("find ")) {
-                        List<Task> filteredTasks = this.tasks.getTasksWithKeyword(input);
-                        this.ui.displayGivenList(filteredTasks);
-                        isUpdated = false;
+    /**
+     * Parses user input, executes the corresponding command, and returns a response string.
+     * Saves tasks to storage on modification.
+     *
+     * @param input The full command string from the user.
+     * @return A string containing the result of the command, e.g., a confirmation or an error.
+     */
+    public String handleUserCommand(String input) {
+        String returnText = "";
+        switch (input.toLowerCase()) {
+            case "bye" -> {
+                returnText = ui.exitMessage();
+            }
+            case "list" -> {
+                returnText = this.tasks.printList();
+            }
+            default -> {
+                if (input.toLowerCase().startsWith("mark ")) {
+                    returnText = this.tasks.markTask(input);
+                } else if (input.toLowerCase().startsWith("unmark ")) {
+                    returnText = this.tasks.unMarkTask(input);
+                } else if (input.toLowerCase().startsWith("todo ")) {
+                    returnText = this.tasks.addToDo(input);
+                } else if (input.toLowerCase().startsWith("deadline ")) {
+                    returnText = this.tasks.addDeadline(input);
+                } else if (input.toLowerCase().startsWith("event ")) {
+                    returnText = this.tasks.addEvent(input);
+                } else if (input.toLowerCase().startsWith("delete ")) {
+                    returnText = this.tasks.deleteTask(input);
+                } else if (input.toLowerCase().startsWith("find ")) {
+                    returnText = this.tasks.getTasksWithKeyword(input);
+                } else {
+                    String error;
+                    List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
+                    if (commands.contains(input)) {
+                        error = String.format("ERROR SIR!! The description of the command %s cannot be empty.",
+                                input);
                     } else {
-                        String error;
-                        List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
-                        if (commands.contains(input)) {
-                            error = String.format("ERROR SIR!! The description of the command %s cannot be empty.",
-                                    input);
-                        } else {
-                            error = "Your input was invalid, make sure to include a valid command";
-                        }
-                        ui.printDivider();
-                        ui.replyPrint(error);
-                        ui.printDivider();
-                        isUpdated = false;
+                        error = "ERROR: Your input was invalid, make sure to include a valid command";
                     }
+                    returnText = error;
+                }
 
-                    if (isUpdated) {
-                        ui.replyPrint(this.tasks.saveFile(storage));
-                    }
+                if (!returnText.toLowerCase().contains("error")) {
+                    returnText += '\n' + this.tasks.saveFile(storage);
                 }
             }
         }
+        return returnText;
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return handleUserCommand(input);
     }
 
     /**
