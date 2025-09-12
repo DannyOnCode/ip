@@ -69,18 +69,25 @@ public class Aura {
             }
             default -> {
                 if (input.toLowerCase().startsWith("mark ")) {
+                    assert input.toLowerCase().contains("mark") : "Entered mark but no \"mark\"";
                     returnText = this.tasks.markTask(input);
                 } else if (input.toLowerCase().startsWith("unmark ")) {
+                    assert input.toLowerCase().contains("unmark") : "Entered unmark but no \"unmark\"";
                     returnText = this.tasks.unMarkTask(input);
                 } else if (input.toLowerCase().startsWith("todo ")) {
+                    assert input.toLowerCase().contains("todo") : "Entered todo but no \"todo\"";
                     returnText = this.tasks.addToDo(input);
                 } else if (input.toLowerCase().startsWith("deadline ")) {
+                    assert input.toLowerCase().contains("deadline") : "Entered deadline but no \"deadline\"";
                     returnText = this.tasks.addDeadline(input);
                 } else if (input.toLowerCase().startsWith("event ")) {
+                    assert input.toLowerCase().contains("event") : "Entered event but no \"event\"";
                     returnText = this.tasks.addEvent(input);
                 } else if (input.toLowerCase().startsWith("delete ")) {
+                    assert input.toLowerCase().contains("delete") : "Entered delete but no \"delete\"";
                     returnText = this.tasks.deleteTask(input);
                 } else if (input.toLowerCase().startsWith("find ")) {
+                    assert input.toLowerCase().contains("find") : "Entered find but no \"find\"";
                     returnText = this.tasks.getTasksWithKeyword(input);
                 } else {
                     String error;
