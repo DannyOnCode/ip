@@ -38,5 +38,5 @@ public abstract class Command {
      */
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         return "Unused Command";
-    };
+    }
 }
