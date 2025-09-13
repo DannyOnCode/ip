@@ -1,8 +1,9 @@
 package aura;
 
 import java.io.IOException;
-import java.util.List;
 
+import aura.command.Command;
+import aura.io.Parser;
 import aura.io.Ui;
 import aura.storage.Storage;
 import aura.task.TaskList;
@@ -60,45 +61,13 @@ public class Aura {
      */
     public String handleUserCommand(String input) {
         String returnText = "";
-        switch (input.toLowerCase()) {
-            case "bye" -> {
-                returnText = ui.exitMessage();
-            }
-            case "list" -> {
-                returnText = this.tasks.printList();
-            }
-            default -> {
-                if (input.toLowerCase().startsWith("mark ")) {
-                    returnText = this.tasks.markTask(input);
-                } else if (input.toLowerCase().startsWith("unmark ")) {
-                    returnText = this.tasks.unMarkTask(input);
-                } else if (input.toLowerCase().startsWith("todo ")) {
-                    returnText = this.tasks.addToDo(input);
-                } else if (input.toLowerCase().startsWith("deadline ")) {
-                    returnText = this.tasks.addDeadline(input);
-                } else if (input.toLowerCase().startsWith("event ")) {
-                    returnText = this.tasks.addEvent(input);
-                } else if (input.toLowerCase().startsWith("delete ")) {
-                    returnText = this.tasks.deleteTask(input);
-                } else if (input.toLowerCase().startsWith("find ")) {
-                    returnText = this.tasks.getTasksWithKeyword(input);
-                } else {
-                    String error;
-                    List<String> commands = List.of("mark", "unmark", "todo", "deadline", "event", "delete");
-                    if (commands.contains(input)) {
-                        error = String.format("ERROR SIR!! The description of the command %s cannot be empty.",
-                                input);
-                    } else {
-                        error = "ERROR: Your input was invalid, make sure to include a valid command";
-                    }
-                    returnText = error;
-                }
+        Command command = Parser.parseInput(input);
+        returnText = command.execute(tasks, storage, ui);
 
-                if (!returnText.toLowerCase().contains("error")) {
-                    returnText += '\n' + this.tasks.saveFile(storage);
-                }
-            }
+        if (!returnText.toLowerCase().contains("error")) {
+            returnText += '\n' + this.tasks.saveFile(storage);
         }
+
         return returnText;
     }
 

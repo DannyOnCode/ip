@@ -5,6 +5,18 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+import aura.command.ByeCommand;
+import aura.command.Command;
+import aura.command.DeadlineCommand;
+import aura.command.DeleteCommand;
+import aura.command.EventCommand;
+import aura.command.FindCommand;
+import aura.command.ListCommand;
+import aura.command.MarkCommand;
+import aura.command.TodoCommand;
+import aura.command.UnknownCommand;
+import aura.command.UnmarkCommand;
+
 /**
  * Handles parsing of user input and date-time strings.
  */
@@ -41,5 +53,45 @@ public class Parser {
         } catch (DateTimeParseException e) {
             return null;
         }
+    }
+
+    /**
+     * Parses the raw user input string and returns the corresponding Command object.
+     * This method acts as a factory for creating command objects based on the input keyword.
+     *
+     * @param input The full command string entered by the user.
+     * @return The specific Command object (e.g., TodoCommand, MarkCommand) to be executed.
+     *          Returns an UnknownCommand if the input does not match any known command format.
+     **/
+    public static Command parseInput(String input) {
+        Command command;
+        switch (input.toLowerCase()) {
+            case "bye" -> {
+                command = new ByeCommand(input);
+            }
+            case "list" -> {
+                command = new ListCommand(input);
+            }
+            default -> {
+                if (input.toLowerCase().startsWith("mark ")) {
+                    command = new MarkCommand(input);
+                } else if (input.toLowerCase().startsWith("unmark ")) {
+                    command = new UnmarkCommand(input);
+                } else if (input.toLowerCase().startsWith("todo ")) {
+                    command = new TodoCommand(input);
+                } else if (input.toLowerCase().startsWith("deadline ")) {
+                    command = new DeadlineCommand(input);
+                } else if (input.toLowerCase().startsWith("event ")) {
+                    command = new EventCommand(input);
+                } else if (input.toLowerCase().startsWith("delete ")) {
+                    command = new DeleteCommand(input);
+                } else if (input.toLowerCase().startsWith("find ")) {
+                    command = new FindCommand(input);
+                } else {
+                    command = new UnknownCommand(input);
+                }
+            }
+        }
+        return command;
     }
 }
