@@ -198,7 +198,8 @@ public class TaskList {
             }
 
         } catch (Exception e) {
-            return "Please follow the format \"event [Task] /from [Start date] /to [End date]\"";
+            return "ERROR: Please follow the format \"event [Task] "
+                    + "/from [Start date] /to [End date]\"";
         }
     }
 
