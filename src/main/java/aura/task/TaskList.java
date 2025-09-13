@@ -45,12 +45,39 @@ public class TaskList {
     }
 
     /**
-     * Formats and returns a string representation of all tasks in the list.
+     * Formats and returns a string representation of tasks in the list.
+     * Returns two types of sorting, without sorting or sorting by due date (for Deadlines)
      *
      * @return A string listing all tasks.
      */
-    public String printList() {
-        return ui.displayGivenList(this.tasks);
+    public String printList(String input) {
+        try {
+            String trimmedIndex = input.substring(4).trim();
+            String returnString;
+            switch (trimmedIndex) {
+                case "" -> returnString = ui.displayGivenList(this.tasks);
+                case "1" -> {
+                    List<Deadlines> deadlineTasks = new ArrayList<>();
+                    for (Task task : this.tasks) {
+                        if (task instanceof Deadlines) {
+                            deadlineTasks.add((Deadlines) task);
+                        }
+                    }
+
+                    deadlineTasks.sort(null);
+
+                    if (deadlineTasks.isEmpty()) {
+                        returnString = "There are no deadline tasks to display.";
+                    } else {
+                        returnString = ui.displayGivenList(new ArrayList<>(deadlineTasks));
+                    }
+                }
+                default -> returnString = "ERROR: Invalid index given, please enter 1 after a space";
+            }
+            return returnString;
+        } catch (Exception e) {
+            return "ERROR: unexpected error, please try again with the either \"list\" or \"list 1\"";
+        }
     }
 
     /**
