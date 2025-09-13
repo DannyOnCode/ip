@@ -1,7 +1,6 @@
 package aura;
 
 import java.io.IOException;
-import java.util.List;
 
 import aura.command.Command;
 import aura.io.Parser;
