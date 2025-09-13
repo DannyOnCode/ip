@@ -60,7 +60,10 @@ public class TaskList {
      * @return A string confirming the addition and showing the new task count.
      */
     public String addTask(Task task) {
+        int sizeBeforeInsert = tasks.size();
         this.tasks.add(task);
+        assert tasks.size() == sizeBeforeInsert + 1
+                : "Successfully inserted by list size did not increase";
         return "Got it. I've added this task:\n"
                 + String.format("  %s\n", task)
                 + String.format("Now you have %d tasks in the list.", this.tasks.size());

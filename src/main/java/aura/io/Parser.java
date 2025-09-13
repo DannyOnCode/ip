@@ -74,18 +74,25 @@ public class Parser {
             }
             default -> {
                 if (input.toLowerCase().startsWith("mark ")) {
+                    assert input.toLowerCase().contains("mark") : "Entered mark but no \"mark\"";
                     command = new MarkCommand(input);
                 } else if (input.toLowerCase().startsWith("unmark ")) {
+                    assert input.toLowerCase().contains("unmark") : "Entered unmark but no \"unmark\"";
                     command = new UnmarkCommand(input);
                 } else if (input.toLowerCase().startsWith("todo ")) {
+                    assert input.toLowerCase().contains("todo") : "Entered todo but no \"todo\"";
                     command = new TodoCommand(input);
                 } else if (input.toLowerCase().startsWith("deadline ")) {
+                    assert input.toLowerCase().contains("deadline") : "Entered deadline but no \"deadline\"";
                     command = new DeadlineCommand(input);
                 } else if (input.toLowerCase().startsWith("event ")) {
+                    assert input.toLowerCase().contains("event") : "Entered event but no \"event\"";
                     command = new EventCommand(input);
                 } else if (input.toLowerCase().startsWith("delete ")) {
+                    assert input.toLowerCase().contains("delete") : "Entered delete but no \"delete\"";
                     command = new DeleteCommand(input);
                 } else if (input.toLowerCase().startsWith("find ")) {
+                    assert input.toLowerCase().contains("find") : "Entered find but no \"find\"";
                     command = new FindCommand(input);
                 } else {
                     command = new UnknownCommand(input);
