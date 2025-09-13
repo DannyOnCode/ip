@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a task with a deadline. A `Deadlines` object includes a description and a "by" date-time.
  */
-public class Deadlines extends Task {
+public class Deadlines extends Task implements Comparable<Deadlines> {
     protected LocalDateTime by;
 
     /**
@@ -73,5 +73,10 @@ public class Deadlines extends Task {
     public String toString() {
         return String.format("[D]%s (by %s)",
                 super.toString(), convertDateToString(this.by));
+    }
+
+    @Override
+    public int compareTo(Deadlines other) {
+        return this.by.compareTo(other.by);
     }
 }

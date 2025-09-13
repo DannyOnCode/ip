@@ -69,11 +69,11 @@ public class Parser {
             case "bye" -> {
                 command = new ByeCommand(input);
             }
-            case "list" -> {
-                command = new ListCommand(input);
-            }
             default -> {
-                if (input.toLowerCase().startsWith("mark ")) {
+                if (input.toLowerCase().startsWith("list")) {
+                    assert input.toLowerCase().contains("list") : "Entered list but no \"list\"";
+                    command = new ListCommand(input);
+                } else if (input.toLowerCase().startsWith("mark ")) {
                     assert input.toLowerCase().contains("mark") : "Entered mark but no \"mark\"";
                     command = new MarkCommand(input);
                 } else if (input.toLowerCase().startsWith("unmark ")) {
