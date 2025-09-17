@@ -26,7 +26,7 @@ public class MainWindow extends AnchorPane {
     private final Ui ui = new Ui();
     private Aura aura;
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private final Image auraImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image auraImage = new Image(this.getClass().getResourceAsStream("/images/DaAura.png"));
 
     /**
      * Initialises the bot and sends a greeting message
