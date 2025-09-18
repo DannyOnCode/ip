@@ -28,7 +28,7 @@ public class Storage {
      * Constructs a Storage object with a default file path.
      */
     public Storage() {
-        this.filePath = "./data/aura.txt";
+        this.filePath = "./data/Aura.txt";
     }
 
     /**
